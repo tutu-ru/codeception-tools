@@ -1,0 +1,19 @@
+{
+    "name": "tutu-ru/lib-codeception-tools",
+    "description": "Instrument for work with codeception",
+    "keywords": ["codeception", "composer", "package"],
+    "license": "proprietary",
+    "type": "library",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^7.1",
+        "codeception/codeception": "^3.0",
+        "cebe/php-openapi": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TutuRu\\CodeceptionTools\\": "src/"
+        }
+    }
+}
