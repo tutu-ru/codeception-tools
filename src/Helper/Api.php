@@ -15,7 +15,7 @@ class Api extends \Codeception\Module
         /** @var REST $module */
         $module = $this->getModule('REST');
         $actualContent = json_decode($module->response);
-        $reader = Reader::readFromJsonFile(realpath('openapi.json'));
+        $reader = Reader::readFromJsonFile(realpath($this->_getConfig('openapi_path')));
 
         if (!isset($reader->components->responses[$responseName])) {
             $this->fail('Не найден response '. $responseName);
