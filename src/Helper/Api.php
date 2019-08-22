@@ -4,6 +4,7 @@ namespace TutuRu\CodeceptionTools\Helper;
 
 use cebe\openapi\Reader;
 use Codeception\Module\REST;
+use Codeception\Util\HttpCode;
 use TutuRu\CodeceptionTools\JsonSchema\Factory;
 use JsonSchema\Validator as JsonSchemaValidator;
 use PHPUnit\Util\Json;
@@ -29,5 +30,14 @@ class Api extends \Codeception\Module
         if(!$jsonSchemaValidator->isValid()) {
             $this->fail("\n Errors: \n" . Json::prettify(json_encode($jsonSchemaValidator->getErrors())));
         }
+    }
+
+    public function seeJsonResponse($schemaName, $httpStatusCode = HttpCode::OK)
+    {
+        /** @var REST $module */
+        $module = $this->getModule('REST');
+        $module->seeResponseCodeIs($httpStatusCode);
+        $module->seeResponseIsJson();
+        $this->seeJSONSchemaValidByResponseName($schemaName);
     }
 }
