@@ -25,7 +25,7 @@ class Api extends \Codeception\Module
         $content = (array) $reader->components->responses[$responseName]->content;
         $jsonSchemaValidator = (new JsonSchemaValidator(new Factory()));
         $a = (array) $content['application/json']->schema->getSerializableData();
-        echo json_encode($a);
+
         $jsonSchemaValidator->validate($actualContent, (array) $content['application/json']->schema->getSerializableData());
         if(!$jsonSchemaValidator->isValid()) {
             $this->fail("\n Errors: \n" . Json::prettify(json_encode($jsonSchemaValidator->getErrors())));
